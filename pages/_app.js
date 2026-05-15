@@ -1,19 +1,20 @@
-import '../styles/global.css'
-import '../styles/main.css'
 import '../styles/tailwind.css'
+import '../styles/global.css'
 import { AnimatePresence } from 'framer-motion'
-import { SessionProvider } from "next-auth/react"
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
-import {NextUIProvider} from "@nextui-org/react";
+export default function App({ Component, pageProps }) {
+    const router = useRouter()
+    const [isReady, setIsReady] = useState(false)
 
-export default function App({ Component, pageProps: { session, ...pageProps }, router }) {
+    useEffect(() => {
+        setIsReady(router.isReady)
+    }, [router.isReady])
+
     return (
-      <NextUIProvider>
-        <SessionProvider session={session}>
-          <AnimatePresence mode="wait">
-            <Component {...pageProps} key={router.route} />
-          </AnimatePresence>
-        </SessionProvider>
-      </NextUIProvider>
+        <AnimatePresence mode="wait">
+          {isReady && <Component {...pageProps} key={router.route} />}
+        </AnimatePresence>
     )
   }

@@ -1,11 +1,10 @@
 import Head from 'next/head'
-import styles from './layout.module.css'
 
 export const siteTitle = 'PanOkurka'
 
 export default function Layout({ children }) {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <link rel="icon" href="/images/profile.png" />
         <meta

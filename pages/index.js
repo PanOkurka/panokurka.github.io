@@ -1,125 +1,247 @@
+'use client'
+
 import Layout from '../components/layout'
 import { FaGithub, FaDiscord, FaTwitter, FaInstagram } from 'react-icons/fa'
+import { Card, Button } from '@heroui/react'
 import Typing from '../components/typing'
 import { motion } from 'framer-motion'
 import ParticlesComponent from '../components/paticlecomponent'
-import { Suspense } from 'react'
-import Router from 'next/router';
-import { User } from '@nextui-org/react'
+import { useState } from 'react'
 
-import prisma from '../lib/prismadb'
+const projects = [
+  {
+    title: 'Atropol',
+    description: 'Web application',
+    image: '/images/projects/Atropol.png',
+    link: 'https://atropol.eu',
+    tag: 'Featured'
+  },
+  {
+    title: 'Atropol Dashboard',
+    description: 'Admin dashboard',
+    image: '/images/projects/Atropol-Dash.png',
+    link: 'https://dash.atropol.eu',
+    tag: 'Tools'
+  },
+  {
+    title: 'Dragonex',
+    description: 'Game project',
+    image: '/images/projects/Dragonex.jpg',
+    link: '#',
+    tag: 'Game'
+  },
+  {
+    title: 'OkurkaCraft Site',
+    description: 'Community site',
+    image: '/images/projects/OkurkaCraftSite.png',
+    link: '#',
+    tag: 'Web'
+  }
+]
 
-export const getServerSideProps = async() => {
+const socialLinks = [
+  { icon: FaGithub, url: 'https://github.com/PanOkurka', label: 'GitHub', color: '#6f42c1' },
+  { icon: FaTwitter, url: 'https://twitter.com/Pan_Okurka', label: 'Twitter', color: '#1da1f2' },
+  { icon: FaInstagram, url: 'https://www.instagram.com/panokurka_official/', label: 'Instagram', color: '#e4405f' },
+  { icon: FaDiscord, url: 'https://discord.gg/wn5aF2w', label: 'Discord', color: '#7289da' }
+]
 
-  const feed = await prisma.post.findMany({
-      where: {
-          published: true
-      },
-      include: {
-          author: {
-              select: { name: true, image: true, role: true}
-          }
-      },
-      orderBy: { createdAt: 'desc' },
-      take: 1,
-  })
-  return {
-      props: { feed }
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
   }
 }
 
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: 'easeOut' }
+  }
+}
 
-export default function NewHome(props) {
+const floatingVariants = {
+  animate: {
+    y: [0, -20, 0],
+    transition: { duration: 4, repeat: Infinity, ease: 'easeInOut' }
+  }
+}
+
+export default function NewHome() {
+  const [hoveredProject, setHoveredProject] = useState(null)
 
   return (
     <Layout>
-      <motion.div exit={{opacity: 0, transition: {duration: 0.6}}} initial={{opacity: 0}} animate={{opacity: 1, transition: {duration: 0.6}}}>
+      <motion.div 
+        exit={{ opacity: 0, transition: { duration: 0.6 } }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { duration: 0.6 } }}
+        className="w-full min-h-screen bg-gradient-to-b from-[#27272a] via-[#27272a] to-[#1a1a1e] relative overflow-hidden"
+      >
         <ParticlesComponent />
-        <div className='w-full h-screen xl:grid flex flex-col xl:grid-cols-8 grid-flow-row grid-cols-1 gap-4 xl:grid-rows-5 grid-rows-6 xl:px-10 md:px-24 md:py-10 md:ml-0 px-12 ml-10 content-center'>
-          <div className='row-start-2 xl:col-start-2 xl:col-span-2 flex justify-center items-center'>
-            <div className='bg-[#18181B] w-[250px] h-[250px] z-50 flex items-center justify-center rounded-full shadow-md shadow-black'>
-              <img alt='PanOkurka' src='/images/profile.gif' className='rounded-full w-[230px] h-[230px]' />
-            </div>
-          </div>
-          <div className='row-start-3 xl:col-start-2 z-50 xl:row-span-3 col-span-2 xl:mt-10'>
-            <div className='bg-[#18181B] flex flex-col py-2 items-center rounded-full shadow-md shadow-black'>
-              <h1 className='text-[#7289DA] text-2xl'>Pan_Okurka</h1>
-              <h2 className='text-white'>I code in <Typing/></h2>
-            </div>
+        
+        {/* Main Content */}
+        <div className="relative z-10 px-4 md:px-8 lg:px-16 py-12 md:py-20">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="max-w-7xl mx-auto"
+          >
+            {/* Hero Section */}
+            <motion.div variants={itemVariants} className="mb-16 md:mb-24">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+                {/* Profile Image */}
+                <motion.div
+                  variants={floatingVariants}
+                  animate="animate"
+                  className="flex justify-center order-2 md:order-1"
+                >
+                  <div className="relative">
+                    {/* Glowing background */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#10b981] to-[#059669] rounded-full opacity-20 blur-2xl animate-pulse" />
+                    
+                    {/* Image container */}
+                    <div className="relative w-64 h-64 md:w-72 md:h-72">
+                      <img
+                        alt="Pan_Okurka"
+                        src="/images/profile.gif"
+                        className="w-full h-full rounded-full object-cover ring-4 ring-[#10b981]/50 shadow-2xl"
+                      />
+                    </div>
+                  </div>
+                </motion.div>
 
-            <div className='bg-[#18181B] flex py-2 justify-center items-center rounded-full shadow-md shadow-black mt-10'>
-              <a href='https://github.com/PanOkurka' className='socialiconlist'>
-                <FaGithub className='githubIcon' />
-              </a>
-              <a href='https://twitter.com/Pan_Okurka' className='socialiconlist'>
-                <FaTwitter className='twitterIcon'/>
-              </a>
-              <a href='https://www.instagram.com/panokurka_official/' className='socialiconlist'>
-                <FaInstagram className='instagramIcon' />
-              </a>
-              <a href='https://discord.gg/wn5aF2w' className='socialiconlist'>
-                <FaDiscord className='discordIcon' />
-              </a>
-            </div>
+                {/* Text Content */}
+                <motion.div variants={itemVariants} className="order-1 md:order-2 text-center md:text-left">
+                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-black mb-4 bg-gradient-to-r from-[#10b981] via-[#34d399] to-[#6ee7b7] bg-clip-text text-transparent">
+                    Pan_Okurka
+                  </h1>
+                  <div className="h-16 mb-6">
+                    <p className="text-xl md:text-2xl text-gray-300 font-medium">
+                      I code in <span className="text-[#10b981] font-bold"><Typing /></span>
+                    </p>
+                  </div>
+                  <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-8 max-w-lg">
+                    Full-stack developer crafting beautiful web experiences and scalable applications. Passionate about clean code, innovative design, and solving complex problems.
+                  </p>
 
-            <div className='bg-[#18181B] flex flex-col py-2 items-center rounded-full shadow-md shadow-black mt-10'>
-              <a href="https://www.buymeacoffee.com/panokurka" 
-                rel="noreferrer" style={{width: "217px", height: "60px"}} 
-                target="_blank">
-                  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" 
-                        alt="Buy Me A Coffee" 
-                        style={{height: '60px !important',width: '217px !important'}} />
-              </a>
-            </div>
-          </div>
-          <div className='xl:row-start-1 xl:col-start-4 row-span-2 xl:mt-0 mt-5 xl:col-span-5 row-start-4 flex items-center justify-center z-50'>
-            <div className='bg-[#18181B] xl:w-3/4 w-full h-full flex flex-col py-2 px-2 rounded-xl shadow-md shadow-black'>
-              <div className='w-full h-1/6 flex items-center border-b-2 border-white'>
-                <h2 className='text-xl text-white'>Latest post:</h2>
+                  {/* CTA Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Button
+                      as="a"
+                      href="#projects"
+                      variant="primary"
+                      size="lg"
+                      className="bg-gradient-to-r from-[#10b981] to-[#059669] font-semibold shadow-lg shadow-[#10b981]/30 hover:shadow-xl hover:shadow-[#10b981]/50"
+                    >
+                      View My Work
+                    </Button>
+                    <Button
+                      as="a"
+                      href="https://www.buymeacoffee.com/panokurka"
+                      target="_blank"
+                      rel="noreferrer"
+                      variant="bordered"
+                      size="lg"
+                      className="border-2 border-[#10b981]/50 hover:border-[#10b981] hover:bg-[#10b981]/10 font-semibold"
+                    >
+                      Buy Me Coffee
+                    </Button>
+                  </div>
+                </motion.div>
               </div>
-              <div className='h-5/6 w-full text-left'>
-                <Suspense>
-                  {props.feed.map((post) => (
-                    <button className='w-full mt-4 px-4' key={post.id} onClick={() => Router.push("/blog/[id]", `/blog/${post.id}`)}>
-                      <div className='w-full px-1 py-2 text-left text-white'>
-                        <h1 className='text-xl font-bold border-b-2 border-gray-400 my-[0.4vh]'>{post.title}</h1>
-                        <div className='mt-4 border-b-2 border-gray-400 my-[0.4vh] overflow-hidden text-ellipsis Cuttext' dangerouslySetInnerHTML={{ __html: post.content }}></div>
-                        <div className='flex mt-4 items-center justify-start'>
-                          <User 
-                                name={post.author.name}
-                                description={post.author.role}
-                                avatarProps={{
-                                  src: post.author.image
-                                }}
-                              />
-                          <p className='ml-4' suppressHydrationWarning>{post.createdAt.toLocaleDateString()}</p>
+            </motion.div>
+
+            {/* Social Links */}
+            <motion.div variants={itemVariants} className="flex justify-center md:justify-start gap-6 mb-20">
+              {socialLinks.map((social, idx) => {
+                const Icon = social.icon
+                return (
+                  <a
+                    key={idx}
+                    href={social.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    title={social.label}
+                    className="p-3 rounded-full bg-[#18181B] border border-[#10b981]/30 hover:border-[#10b981] hover:bg-[#10b981]/10 transition-all duration-300 group"
+                  >
+                    <Icon
+                      size={24}
+                      className="transition-colors"
+                      style={{ color: social.color }}
+                    />
+                  </a>
+                )
+              })}
+            </motion.div>
+
+            {/* Projects Section */}
+            <motion.div variants={itemVariants} id="projects" className="mt-32">
+              <div className="mb-12">
+                <h2 className="text-4xl md:text-5xl font-black mb-2 text-white">Featured Projects</h2>
+                <div className="h-1 w-32 bg-gradient-to-r from-[#10b981] to-[#059669]" />
+              </div>
+
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                className="grid grid-cols-1 md:grid-cols-2 gap-8"
+              >
+                {projects.map((project, idx) => (
+                  <motion.div
+                    key={idx}
+                    variants={itemVariants}
+                    className="group h-80"
+                    onMouseEnter={() => setHoveredProject(idx)}
+                    onMouseLeave={() => setHoveredProject(null)}
+                  >
+                    <a
+                      href={project.link}
+                      target={project.link.startsWith('http') ? '_blank' : undefined}
+                      rel={project.link.startsWith('http') ? 'noreferrer' : undefined}
+                      className="h-full block"
+                    >
+                      <div className="h-full bg-[#18181B]/80 backdrop-blur border border-[#10b981]/20 hover:border-[#10b981]/50 transition-all duration-300 overflow-hidden rounded-lg cursor-pointer">
+                        {/* Image */}
+                        <div className="relative h-full overflow-hidden">
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          />
+
+                          {/* Overlay */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                            <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
+                            <p className="text-gray-300 mb-4">{project.description}</p>
+                            <div className="flex gap-2 flex-wrap">
+                              <span className="px-3 py-1 bg-[#10b981]/30 text-[#10b981] rounded-full text-sm font-medium">
+                                {project.tag}
+                              </span>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </button>
-                  ))}
-                </Suspense>
-              </div>
-            </div>
-          </div>
-          <div className='xl:row-start-3 xl:col-start-4 row-span-3 z-50 col-span-5 flex justify-center items-center'>
-            <div className='bg-[#18181B] xl:w-4/5 w-full xl:h-[90%] h-full md:mb-0 mb-4 px-4 flex flex-col rounded-xl shadow-md shadow-black'>
-              <div className='h-full w-full md:grid flex grid-cols-2 grid-rows-2 flex-col gap-2 py-4'>
-                  <a className='w-full h-full flex justify-center items-center' href='https://atropol.eu'>
-                    <img src='/images/projects/Atropol.png' className='h-full rounded-lg duration-150 hover:scale-[1.2] border-4 border-black' />
-                  </a>
-                  <a className='w-full h-full flex justify-center items-center' href='https://dash.atropol.eu'>
-                    <img src='/images/projects/Atropol-Dash.png' className='h-full rounded-lg duration-150 hover:scale-[1.2] border-4 border-black' />
-                  </a>
-                  <div className='w-full h-full flex justify-center items-center'>
-                    <img src='/images/projects/Dragonex.jpg' className='h-full rounded-lg duration-150 hover:scale-[1.2] border-4 border-black' />
-                  </div>
-                  <div className='w-full h-full flex justify-center items-center'>
-                    <img src='/images/projects/OkurkaCraftSite.png' className='h-full rounded-lg duration-150 hover:scale-[1.2] border-4 border-black' />
-                  </div>
-              </div>
-            </div>
-          </div>
-        </div>      
+                    </a>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Decorative Elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#10b981]/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-[#059669]/5 rounded-full blur-3xl pointer-events-none" />
       </motion.div>
     </Layout>
   )
