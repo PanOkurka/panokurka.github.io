@@ -47,7 +47,7 @@ export default function Bio() {
         exit={{ opacity: 0, transition: { duration: 0.6 } }} 
         initial={{ opacity: 0 }} 
         animate={{ opacity: 1, transition: { duration: 0.6 } }}
-        className="w-full min-h-screen bg-gradient-to-b from-[#27272a] via-[#27272a] to-[#1a1a1e] relative overflow-hidden"
+        className="w-full min-h-screen bg-linear-to-b from-[#27272a] via-[#27272a] to-[#1a1a1e] relative overflow-hidden"
       >
         {/* Main Content */}
         <div className="relative z-10 px-4 md:px-8 lg:px-16 py-12 md:py-20">
@@ -59,10 +59,10 @@ export default function Bio() {
           >
             {/* Header */}
             <motion.div variants={itemVariants} className="mb-16">
-              <h1 className="text-5xl md:text-6xl font-black mb-4 bg-gradient-to-r from-[#10b981] via-[#34d399] to-[#6ee7b7] bg-clip-text text-transparent">
+              <h1 className="text-5xl md:text-6xl font-black mb-4 bg-linear-to-r from-[#10b981] via-[#34d399] to-[#6ee7b7] bg-clip-text text-transparent">
                 My Story
               </h1>
-              <div className="h-1 w-32 bg-gradient-to-r from-[#10b981] to-[#059669] mb-6" />
+              <div className="h-1 w-32 bg-linear-to-r from-[#10b981] to-[#059669] mb-6" />
               <p className="text-xl text-gray-300">Get to know more about me, my journey, and what I love doing.</p>
             </motion.div>
 
@@ -106,9 +106,9 @@ export default function Bio() {
                   <motion.div
                     key={idx}
                     variants={itemVariants}
-                    className="bg-gradient-to-br from-[#10b981]/20 to-[#059669]/10 border border-[#10b981]/30 rounded-lg p-6 text-center hover:border-[#10b981]/50 transition-all"
+                    className="bg-linear-to-br from-[#10b981]/20 to-[#059669]/10 border border-[#10b981]/30 rounded-lg p-6 text-center hover:border-[#10b981]/50 transition-all"
                   >
-                    <div className="text-4xl md:text-5xl font-black bg-gradient-to-r from-[#10b981] to-[#34d399] bg-clip-text text-transparent mb-2">
+                    <div className="text-4xl md:text-5xl font-black bg-linear-to-r from-[#10b981] to-[#34d399] bg-clip-text text-transparent mb-2">
                       {highlight.value}
                     </div>
                     <p className="text-gray-400 font-medium">{highlight.label}</p>

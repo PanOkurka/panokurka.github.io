@@ -82,7 +82,7 @@ export default function NewHome() {
         exit={{ opacity: 0, transition: { duration: 0.6 } }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, transition: { duration: 0.6 } }}
-        className="w-full min-h-screen bg-gradient-to-b from-[#27272a] via-[#27272a] to-[#1a1a1e] relative overflow-hidden"
+        className="w-full min-h-screen bg-linear-to-b from-[#27272a] via-[#27272a] to-[#1a1a1e] relative overflow-hidden"
       >
         <ParticlesComponent />
         
@@ -105,7 +105,7 @@ export default function NewHome() {
                 >
                   <div className="relative">
                     {/* Glowing background */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#10b981] to-[#059669] rounded-full opacity-20 blur-2xl animate-pulse" />
+                    <div className="absolute inset-0 bg-linear-to-br from-[#10b981] to-[#059669] rounded-full opacity-20 blur-2xl animate-pulse" />
                     
                     {/* Image container */}
                     <div className="relative w-64 h-64 md:w-72 md:h-72">
@@ -120,7 +120,7 @@ export default function NewHome() {
 
                 {/* Text Content */}
                 <motion.div variants={itemVariants} className="order-1 md:order-2 text-center md:text-left">
-                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-black mb-4 bg-gradient-to-r from-[#10b981] via-[#34d399] to-[#6ee7b7] bg-clip-text text-transparent">
+                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-black mb-4 bg-linear-to-r from-[#10b981] via-[#34d399] to-[#6ee7b7] bg-clip-text text-transparent">
                     Tomáš K.
                   </h1>
                   <div className="h-16 mb-6">
@@ -139,7 +139,7 @@ export default function NewHome() {
                       href="#projects"
                       variant="primary"
                       size="lg"
-                      className="bg-gradient-to-r from-[#10b981] to-[#059669] font-semibold shadow-lg shadow-[#10b981]/30 hover:shadow-xl hover:shadow-[#10b981]/50"
+                      className="bg-linear-to-r from-[#10b981] to-[#059669] font-semibold shadow-lg shadow-[#10b981]/30 hover:shadow-xl hover:shadow-[#10b981]/50"
                     >
                       View My Work
                     </Button>
@@ -185,7 +185,7 @@ export default function NewHome() {
             <motion.div variants={itemVariants} id="projects" className="mt-32">
               <div className="mb-12">
                 <h2 className="text-4xl md:text-5xl font-black mb-2 text-white">Featured Projects</h2>
-                <div className="h-1 w-32 bg-gradient-to-r from-[#10b981] to-[#059669]" />
+                <div className="h-1 w-32 bg-linear-to-r from-[#10b981] to-[#059669]" />
               </div>
 
               <motion.div
@@ -219,7 +219,7 @@ export default function NewHome() {
                           />
 
                           {/* Overlay */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                          <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
                             <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
                             <p className="text-gray-300 mb-4">{project.description}</p>
                             <div className="flex gap-2 flex-wrap">

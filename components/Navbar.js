@@ -20,7 +20,7 @@ export const Navbar = () => {
 
   return (
     <aside
-      className={`h-screen fixed bg-gradient-to-b from-[#1a1a1e] to-[#27272a] border-r border-[#10b981]/20 duration-300 z-30 ${
+      className={`h-screen fixed bg-linear-to-b from-[#1a1a1e] to-[#27272a] border-r border-[#10b981]/20 duration-300 z-30 ${
         open ? 'md:w-64 w-20' : 'w-20'
       }`}
       aria-label="Sidebar"
@@ -49,7 +49,7 @@ export const Navbar = () => {
           {open ? (
             <>
               <img
-                className="h-10 w-10 rounded-full border-2 object-cover border-[#10b981]/50 flex-shrink-0"
+                className="h-10 w-10 rounded-full border-2 object-cover border-[#10b981]/50 shrink-0"
                 alt="logo"
                 src="/images/panokurka.jpeg"
               />
@@ -82,7 +82,7 @@ export const Navbar = () => {
                     icon={link.icon}
                     width={24}
                     height={24}
-                    className={`flex-shrink-0 transition-colors ${
+                    className={`shrink-0 transition-colors ${
                       active ? 'text-[#10b981]' : 'group-hover:text-[#34d399]'
                     }`}
                   />

@@ -56,7 +56,7 @@ export default function Info() {
         exit={{ opacity: 0, transition: { duration: 0.6, delay: 0.5 } }} 
         initial={{ opacity: 0 }} 
         animate={{ opacity: 1, transition: { duration: 0.6 } }}
-        className="w-full min-h-screen bg-gradient-to-b from-[#27272a] via-[#27272a] to-[#1a1a1e] relative overflow-hidden"
+        className="w-full min-h-screen bg-linear-to-b from-[#27272a] via-[#27272a] to-[#1a1a1e] relative overflow-hidden"
       >
         {/* Main Content */}
         <div className="relative z-10 px-4 md:px-8 lg:px-16 py-12 md:py-20">
@@ -68,10 +68,10 @@ export default function Info() {
           >
             {/* Header */}
             <motion.div variants={itemVariants} className="mb-16">
-              <h1 className="text-5xl md:text-6xl font-black mb-4 bg-gradient-to-r from-[#10b981] via-[#34d399] to-[#6ee7b7] bg-clip-text text-transparent">
+              <h1 className="text-5xl md:text-6xl font-black mb-4 bg-linear-to-r from-[#10b981] via-[#34d399] to-[#6ee7b7] bg-clip-text text-transparent">
                 My Skills
               </h1>
-              <div className="h-1 w-32 bg-gradient-to-r from-[#10b981] to-[#059669] mb-6" />
+              <div className="h-1 w-32 bg-linear-to-r from-[#10b981] to-[#059669] mb-6" />
               <p className="text-xl text-gray-300">Here's an overview of my technical expertise and proficiency levels across different domains.</p>
             </motion.div>
 
@@ -106,7 +106,7 @@ export default function Info() {
                         </div>
                         <div className="w-full h-2 bg-[#10b981]/20 rounded-full overflow-hidden border border-[#10b981]/30">
                           <motion.div
-                            className="h-full bg-gradient-to-r from-[#10b981] to-[#34d399]"
+                            className="h-full bg-linear-to-r from-[#10b981] to-[#34d399]"
                             initial={{ width: 0 }}
                             whileInView={{ width: `${skill.proficiency}%` }}
                             viewport={{ once: true }}

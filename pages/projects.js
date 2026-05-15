@@ -186,7 +186,7 @@ export default function Projects() {
         exit={{ opacity: 0, transition: { duration: 0.6 } }} 
         initial={{ opacity: 0 }} 
         animate={{ opacity: 1, transition: { duration: 0.6 } }}
-        className="w-full min-h-screen bg-gradient-to-b from-[#27272a] via-[#27272a] to-[#1a1a1e] relative overflow-hidden"
+        className="w-full min-h-screen bg-linear-to-b from-[#27272a] via-[#27272a] to-[#1a1a1e] relative overflow-hidden"
       >
         {/* Main Content */}
         <div className="relative z-10 px-4 md:px-8 lg:px-16 py-12 md:py-20">
@@ -198,10 +198,10 @@ export default function Projects() {
           >
             {/* Header */}
             <motion.div variants={itemVariants} className="mb-16">
-              <h1 className="text-5xl md:text-6xl font-black mb-4 bg-gradient-to-r from-[#10b981] via-[#34d399] to-[#6ee7b7] bg-clip-text text-transparent">
+              <h1 className="text-5xl md:text-6xl font-black mb-4 bg-linear-to-r from-[#10b981] via-[#34d399] to-[#6ee7b7] bg-clip-text text-transparent">
                 My Projects
               </h1>
-              <div className="h-1 w-32 bg-gradient-to-r from-[#10b981] to-[#059669] mb-6" />
+              <div className="h-1 w-32 bg-linear-to-r from-[#10b981] to-[#059669] mb-6" />
               <p className="text-xl text-gray-300">A timeline of my journey through various projects and experiences.</p>
             </motion.div>
 
@@ -213,9 +213,9 @@ export default function Projects() {
               className="relative"
             >
               {/* Vertical line - centered */}
-              <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-[#10b981] to-[#059669] opacity-30 transform -translate-x-1/2" />
+              <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-linear-to-b from-[#10b981] to-[#059669] opacity-30 transform -translate-x-1/2" />
               {/* Mobile vertical line on left */}
-              <div className="md:hidden absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#10b981] to-[#059669] opacity-30" />
+              <div className="md:hidden absolute left-6 top-0 bottom-0 w-0.5 bg-linear-to-b from-[#10b981] to-[#059669] opacity-30" />
 
               {/* Timeline items */}
               <div className="space-y-16">
@@ -248,7 +248,7 @@ export default function Projects() {
                         <div className="flex justify-center">
                           <motion.div
                             whileHover={{ scale: 1.1 }}
-                            className="w-12 h-12 rounded-full bg-gradient-to-br from-[#10b981] to-[#059669] flex items-center justify-center text-white text-xl shadow-lg shadow-[#10b981]/30 relative z-10 flex-shrink-0"
+                            className="w-12 h-12 rounded-full bg-linear-to-br from-[#10b981] to-[#059669] flex items-center justify-center text-white text-xl shadow-lg shadow-[#10b981]/30 relative z-10 shrink-0"
                           >
                             {project.icon}
                           </motion.div>
@@ -262,7 +262,7 @@ export default function Projects() {
                       <div className="md:hidden flex gap-4 items-start">
                         <motion.div
                           whileHover={{ scale: 1.1 }}
-                          className="w-12 h-12 rounded-full bg-gradient-to-br from-[#10b981] to-[#059669] flex items-center justify-center text-white text-lg shadow-lg shadow-[#10b981]/30 relative z-10 flex-shrink-0 mt-1"
+                          className="w-12 h-12 rounded-full bg-linear-to-br from-[#10b981] to-[#059669] flex items-center justify-center text-white text-lg shadow-lg shadow-[#10b981]/30 relative z-10 shrink-0 mt-1"
                         >
                           {project.icon}
                         </motion.div>
