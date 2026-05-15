@@ -7,13 +7,13 @@ export default function Layout({ children }) {
   return (
     <div>
       <Head>
-        <link rel="icon" href="/images/profile.png" />
+        <link rel="icon" href="/images/panokurka.jpeg" />
         <meta
           name="description"
           content="Pan_Okurka's website!"
         />
         <meta name="og:title" content={siteTitle} />
-        <title>Pan_Okurka</title>
+        <title>Tomáš K. | Pan_Okurka</title>
       </Head>
       <Navbar/>
       <main>{children}</main>
