@@ -1,7 +1,7 @@
 'use client'
 
 import Layout from '../components/layout'
-import { FaGithub, FaDiscord, FaTwitter, FaInstagram } from 'react-icons/fa'
+import { Icon } from '@iconify/react'
 import { Card, Button } from '@heroui/react'
 import Typing from '../components/typing'
 import { motion } from 'framer-motion'
@@ -14,36 +14,36 @@ const projects = [
     description: 'Web application',
     image: '/images/projects/Atropol.png',
     link: 'https://atropol.eu',
-    tag: 'Featured'
+    tag: 'HomePage'
   },
   {
     title: 'Atropol Dashboard',
     description: 'Admin dashboard',
     image: '/images/projects/Atropol-Dash.png',
-    link: 'https://dash.atropol.eu',
-    tag: 'Tools'
+    link: 'https://panel.atropol.eu',
+    tag: 'Administration'
   },
   {
     title: 'Dragonex',
     description: 'Game project',
     image: '/images/projects/Dragonex.jpg',
     link: '#',
-    tag: 'Game'
+    tag: 'Web of minecraft server'
   },
   {
     title: 'OkurkaCraft Site',
     description: 'Community site',
     image: '/images/projects/OkurkaCraftSite.png',
     link: '#',
-    tag: 'Web'
+    tag: 'Web for my server'
   }
 ]
 
 const socialLinks = [
-  { icon: FaGithub, url: 'https://github.com/PanOkurka', label: 'GitHub', color: '#6f42c1' },
-  { icon: FaTwitter, url: 'https://twitter.com/Pan_Okurka', label: 'Twitter', color: '#1da1f2' },
-  { icon: FaInstagram, url: 'https://www.instagram.com/panokurka_official/', label: 'Instagram', color: '#e4405f' },
-  { icon: FaDiscord, url: 'https://discord.gg/wn5aF2w', label: 'Discord', color: '#7289da' }
+  { icon: 'mdi:github', url: 'https://github.com/PanOkurka', label: 'GitHub', color: '#6f42c1' },
+  { icon: 'mdi:twitter', url: 'https://twitter.com/Pan_Okurka', label: 'Twitter', color: '#1da1f2' },
+  { icon: 'mdi:instagram', url: 'https://www.instagram.com/panokurka_official/', label: 'Instagram', color: '#e4405f' },
+  { icon: 'mdi:discord', url: 'https://discord.gg/wn5aF2w', label: 'Discord', color: '#7289da' }
 ]
 
 const containerVariants = {
@@ -111,7 +111,7 @@ export default function NewHome() {
                     <div className="relative w-64 h-64 md:w-72 md:h-72">
                       <img
                         alt="Pan_Okurka"
-                        src="/images/profile.gif"
+                        src="/images/panokurka.jpeg"
                         className="w-full h-full rounded-full object-cover ring-4 ring-[#10b981]/50 shadow-2xl"
                       />
                     </div>
@@ -121,7 +121,7 @@ export default function NewHome() {
                 {/* Text Content */}
                 <motion.div variants={itemVariants} className="order-1 md:order-2 text-center md:text-left">
                   <h1 className="text-5xl md:text-6xl lg:text-7xl font-black mb-4 bg-gradient-to-r from-[#10b981] via-[#34d399] to-[#6ee7b7] bg-clip-text text-transparent">
-                    Pan_Okurka
+                    Tomáš K.
                   </h1>
                   <div className="h-16 mb-6">
                     <p className="text-xl md:text-2xl text-gray-300 font-medium">
@@ -161,25 +161,24 @@ export default function NewHome() {
 
             {/* Social Links */}
             <motion.div variants={itemVariants} className="flex justify-center md:justify-start gap-6 mb-20">
-              {socialLinks.map((social, idx) => {
-                const Icon = social.icon
-                return (
-                  <a
-                    key={idx}
-                    href={social.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    title={social.label}
-                    className="p-3 rounded-full bg-[#18181B] border border-[#10b981]/30 hover:border-[#10b981] hover:bg-[#10b981]/10 transition-all duration-300 group"
-                  >
-                    <Icon
-                      size={24}
-                      className="transition-colors"
-                      style={{ color: social.color }}
-                    />
-                  </a>
-                )
-              })}
+              {socialLinks.map((social, idx) => (
+                <a
+                  key={idx}
+                  href={social.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  title={social.label}
+                  className="p-3 rounded-full bg-[#18181B] border border-[#10b981]/30 hover:border-[#10b981] hover:bg-[#10b981]/10 transition-all duration-300 group"
+                >
+                  <Icon
+                    icon={social.icon}
+                    width={24}
+                    height={24}
+                    className="transition-colors"
+                    style={{ color: social.color }}
+                  />
+                </a>
+              ))}
             </motion.div>
 
             {/* Projects Section */}

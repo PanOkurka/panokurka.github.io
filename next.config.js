@@ -44,6 +44,6 @@ module.exports = {
 
   // Experimental features for better performance
   experimental: {
-    optimizePackageImports: ['@heroui/react', 'react-icons'],
+    optimizePackageImports: ['@heroui/react', '@iconify/react'],
   },
 };

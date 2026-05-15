@@ -1,13 +1,7 @@
 import Layout from '../components/layout'
 import { motion } from 'framer-motion'
 import { Card } from '@heroui/react'
-import { FaHtml5 } from '@react-icons/all-files/fa/FaHtml5'
-import { SiJavascript } from '@react-icons/all-files/si/SiJavascript'
-import { GiStoneBlock } from '@react-icons/all-files/gi/GiStoneBlock'
-import { TbBrandNextjs, TbBrandDocker } from 'react-icons/tb'
-import { MdGTranslate } from 'react-icons/md'
-import { GiServerRack } from 'react-icons/gi'
-import { BsQuestionCircle } from 'react-icons/bs'
+import { Icon } from '@iconify/react'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -35,7 +29,7 @@ const projects = [
     title: 'Website Developer',
     type: 'Career',
     date: '2017 - present',
-    icon: <FaHtml5 />,
+    icon: <Icon icon="devicon:html5" />,
     description: 'At this time only HTML, CSS and basic JS. After some time moved to ReactJS. And now NextJS, TailwindCSS and more.',
     location: 'Czechia'
   },
@@ -44,7 +38,7 @@ const projects = [
     title: 'Baby-Cucumber v1.0',
     type: 'Discord Bot',
     date: '2019 - 2020',
-    icon: <SiJavascript />,
+    icon: <Icon icon="devicon:javascript" />,
     description: 'Basic Discord Bot with features for moderation, fun and more.',
   },
   {
@@ -52,7 +46,7 @@ const projects = [
     title: 'AdvancedCraft',
     type: 'Minecraft Server',
     date: '2019 - 2019',
-    icon: <GiStoneBlock />,
+    icon: <Icon icon="vscode-icons:file-type-minecraft" />,
     description: 'Technik of this server'
   },
   {
@@ -60,7 +54,7 @@ const projects = [
     title: 'DarkMines (VIPCraft)',
     type: 'Minecraft Server',
     date: '2019 - 2020',
-    icon: <GiStoneBlock />,
+    icon: <Icon icon="vscode-icons:file-type-minecraft" />,
     description: 'Builder, Admin, Technik'
   },
   {
@@ -68,15 +62,15 @@ const projects = [
     title: 'Baby-Cucumber v2.0',
     type: 'Discord Bot',
     date: '2020 - present',
-    icon: <SiJavascript />,
+    icon: <Icon icon="devicon:javascript" />,
     description: 'Advanced Discord Bot with lot of features.'
   },
   {
     id: 6,
-    title: 'OkurkaCraft',
+    title: 'OkurkaCraft S1',
     type: 'Minecraft server',
     date: 'late 2019 - early 2021',
-    icon: <GiStoneBlock />,
+    icon: <Icon icon="vscode-icons:file-type-minecraft" />,
     description: 'My own minecraft server with whitelist'
   },
   {
@@ -84,31 +78,31 @@ const projects = [
     title: 'Atropol',
     type: 'MC, Hosting, Other',
     date: '2019 - 2021',
-    icon: <GiServerRack />,
+    icon: <Icon icon="streamline-stickies-color:server-network" />,
     description: 'Technik and Developer'
   },
   {
     id: 8,
     title: 'Okurka Images',
-    type: 'Pterodactyl panel',
+    type: 'Docker',
     date: '2021 - 2022',
-    icon: <TbBrandDocker />,
-    description: 'Some pterodactyl panel images for minecraft'
+    icon: <Icon icon="devicon:docker" />,
+    description: 'Some docker images for minecraft'
   },
   {
     id: 9,
     title: 'Plugin Translation',
     type: 'Minecraft - TechsCode',
     date: '2021 - present',
-    icon: <MdGTranslate />,
+    icon: <Icon icon="streamline-sharp-color:translate-text-flat" />,
     description: 'Translations of TechsCode minecraft plugins'
   },
   {
     id: 10,
     title: 'Cucumber/Dragonex Radio',
     type: 'Discord Bot',
-    date: '2021 - present',
-    icon: <SiJavascript />,
+    date: '2021 - 2025',
+    icon: <Icon icon="devicon:javascript" />,
     description: 'Simple 24/7 radio of lofi music'
   },
   {
@@ -116,7 +110,7 @@ const projects = [
     title: 'Dragonex Network',
     type: 'Minecraft Server',
     date: '2021 - 2022',
-    icon: <TbBrandNextjs />,
+    icon: <Icon icon="vscode-icons:file-type-minecraft" />,
     description: 'Website Developer, Technik'
   },
   {
@@ -124,7 +118,7 @@ const projects = [
     title: 'Ethernal',
     type: 'Minecraft Server',
     date: '2022 - 2022',
-    icon: <TbBrandNextjs />,
+    icon: <Icon icon="devicon:nextjs" />,
     description: 'Website Developer'
   },
   {
@@ -132,7 +126,7 @@ const projects = [
     title: 'Mejs.cz',
     type: 'Minecraft Server',
     date: '2022 - 2022',
-    icon: <SiJavascript />,
+    icon: <Icon icon="devicon:javascript" />,
     description: 'Discord bot Developer'
   },
   {
@@ -140,7 +134,7 @@ const projects = [
     title: 'Greenex Network',
     type: 'Soon... | Currently paused.',
     date: '2023 - present',
-    icon: <BsQuestionCircle />,
+    icon: <Icon icon="vscode-icons:file-type-minecraft" />,
     description: 'Founder, Technik'
   },
   {
@@ -148,15 +142,15 @@ const projects = [
     title: 'Freelancer',
     type: 'Various Projects',
     date: '2022 - present',
-    icon: <TbBrandNextjs />,
-    description: 'Web development, technical consulting'
+    icon: <Icon icon="devicon:nextjs" />,
+    description: 'Web development, network consulting'
   },
   {
     id: 16,
     title: 'OkurkaCraft S2',
     type: 'Minecraft whitelist server',
-    date: '2022 - present',
-    icon: <BsQuestionCircle />,
+    date: '2022 - 2024',
+    icon: <Icon icon="vscode-icons:file-type-minecraft" />,
     description: 'Founder and Developer'
   },
   {
@@ -164,9 +158,25 @@ const projects = [
     title: 'Atropol Hosting',
     type: 'Game, VPS, Dedicated Server and more',
     date: '2023 - present',
-    icon: <TbBrandNextjs />,
-    description: 'Developer, Technik'
-  }
+    icon: <Icon icon="streamline-stickies-color:server-network" />,
+    description: 'CTO & Dev'
+  },
+  {
+    id: 18,
+    title: 'OkurkaCraft V2',
+    type: 'Minecraft whitelist server',
+    date: '2026 - present',
+    icon: <Icon icon="vscode-icons:file-type-minecraft" />,
+    description: 'Founder and Developer'
+  },
+  {
+    id: 19,
+    title: 'InPacket Network',
+    type: 'Rack & Housing provider',
+    date: '2026 - present',
+    icon: <Icon icon="streamline-freehand-color:network" />,
+    description: 'CTO & Dev'
+  },
 ]
 
 export default function Projects() {

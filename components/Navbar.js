@@ -1,61 +1,128 @@
 /* eslint @next/next/no-img-element: 0 */
 
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import Link from 'next/link';
-//<Link to='/wiki' classNameName='nav-link'>Wiki</Link>
-import { FaCodeBranch } from '@react-icons/all-files/fa/FaCodeBranch'
-import { FaHome } from '@react-icons/all-files/fa/FaHome'
-import { FaBook } from '@react-icons/all-files/fa/FaBook'
-import { BsFillInfoCircleFill } from '@react-icons/all-files/bs/BsFillInfoCircleFill'
-import { FaClipboardList } from '@react-icons/all-files/fa/FaClipboardList'
-import { BsArrowLeftShort } from '@react-icons/all-files/bs/BsArrowLeftShort'
+import { useRouter } from 'next/router';
+import { Icon } from '@iconify/react';
+
 export const Navbar = () => {
+  const [open, setOpen] = useState(false);
+  const router = useRouter();
 
-   const [open, setOpen] = useState(false);
+  const isActive = (path) => router.pathname === path;
 
-    return (
-      <aside className={`h-screen fixed bg-[#18181B] duration-300 z-30 ${open? "md:w-60 w-20" : "w-20"}`} aria-label="Sidebar">
-      <div className="overflow-y-auto h-screen py-4 px-3 rounded">
-         <BsArrowLeftShort className={`bg-white text-black text-3xl rounded-full absolute -right-3 duration-150 top-9 border border-black cursor-pointer ${!open && "rotate-180"}`} onClick={() => setOpen(!open)} />
-         <Link href="/" className={`flex pl-2.5 pb-2 mb-3 hover:no-underline border-b-2 border-solid border-gray-500`}>
-            <img className="mr-3 h-9 rounded-full" alt='logo' src='/images/profile.gif' />
-            <span className={`self-center text-lg font-semibold whitespace-nowrap text-white hover:no-underline ${!open && "scale-0"}`}>Pan_Okurka</span>
-         </Link>
-         <ul className="space-y-2">
-            <li>
-               <Link href="/" className={`flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-[#27272A] hover:no-underline ${!open && "justify-center"}`}>
-                  <FaHome className={`text-3xl duration-75 text-gray-400`}></FaHome>
-                  <span className={`ml-10 absolute duration-150 ${!open && "hidden scale-0 duration-75"}`}>Home</span>
-               </Link>
-            </li>
-            <li>
-               <Link href="/bio" className={`flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-[#27272A] hover:no-underline ${!open && "justify-center"}`}>
-                  <FaBook className="text-3xl transition duration-75 text-gray-400 group-hover:text-white"></FaBook>
-                  <span className={`flex-1 ml-10 absolute whitespace-nowrap duration-150 ${!open && "hidden scale-0 duration-75"}`}>Bio</span>
-               </Link>
-            </li>
-            <li>
-               <Link href="/info" className={`flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-[#27272A] hover:no-underline ${!open && "justify-center"}`}>
-                  <BsFillInfoCircleFill className="text-3xl transition duration-75 text-gray-400 group-hover:text-white"></BsFillInfoCircleFill>
-                  <span className={`flex-1 ml-10 absolute whitespace-nowrap duration-150 ${!open && "hidden scale-0 duration-75"}`}>Some Info</span>
-               </Link>
-            </li>
-            <li>
-               <Link href="/projects" className={`flex items-center p-2 text-base font-normal rounded-lg text-white hover:bg-[#27272A] hover:no-underline ${!open && "justify-center"}`}>
-                  <FaClipboardList className="text-3xl transition duration-75 text-gray-400 group-hover:text-white"></FaClipboardList>
-                  <span className={`flex-1 ml-10 absolute whitespace-nowrap duration-150 ${!open && "hidden scale-0 duration-75"}`}>Projects</span>
-               </Link>
-            </li>
+  const navLinks = [
+    { href: '/', label: 'Home', icon: 'mdi:home' },
+    { href: '/bio', label: 'Bio', icon: 'mdi:book' },
+    { href: '/info', label: 'Skills', icon: 'mdi:information-circle' },
+    { href: '/projects', label: 'Projects', icon: 'mdi:folder-multiple' },
+  ];
+
+  return (
+    <aside
+      className={`h-screen fixed bg-gradient-to-b from-[#1a1a1e] to-[#27272a] border-r border-[#10b981]/20 duration-300 z-30 ${
+        open ? 'md:w-64 w-20' : 'w-20'
+      }`}
+      aria-label="Sidebar"
+    >
+      <div className="overflow-y-auto h-screen py-4 px-3 flex flex-col">
+        {/* Toggle Button */}
+        <button
+          onClick={() => setOpen(!open)}
+          className="self-end mb-4 p-2 rounded-lg hover:bg-[#10b981]/20 transition-all duration-200 text-[#10b981]"
+          aria-label="Toggle sidebar"
+        >
+          <Icon
+            icon={open ? 'mdi:chevron-left' : 'mdi:chevron-right'}
+            width={24}
+            height={24}
+          />
+        </button>
+
+        {/* Logo */}
+        <Link
+          href="/"
+          className={`flex items-center gap-3 mb-8 rounded-lg hover:bg-[#10b981]/10 transition-all duration-200 border border-transparent hover:border-[#10b981]/30 hover:no-underline ${
+            open ? 'p-2' : 'p-1 justify-center'
+          }`}
+        >
+          {open ? (
+            <>
+              <img
+                className="h-10 w-10 rounded-full border-2 object-cover border-[#10b981]/50 flex-shrink-0"
+                alt="logo"
+                src="/images/panokurka.jpeg"
+              />
+              <span className="text-lg font-bold text-white whitespace-nowrap">Tomáš K.</span>
+            </>
+          ) : (
+            <img
+              className="h-10 w-10 rounded-full border-2 object-cover border-[#10b981]/50"
+              alt="logo"
+              src="/images/panokurka.jpeg"
+            />
+          )}
+        </Link>
+
+        {/* Navigation Links */}
+        <ul className="space-y-2 flex-1">
+          {navLinks.map((link) => {
+            const active = isActive(link.href);
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={`flex items-center gap-4 p-3 rounded-lg transition-all duration-200 group hover:no-underline ${
+                    active
+                      ? 'bg-[#10b981]/20 border border-[#10b981]/50 text-[#10b981]'
+                      : 'text-gray-400 hover:text-white hover:bg-[#10b981]/10 border border-transparent hover:border-[#10b981]/30'
+                  } ${!open && 'justify-center'}`}
+                >
+                  <Icon
+                    icon={link.icon}
+                    width={24}
+                    height={24}
+                    className={`flex-shrink-0 transition-colors ${
+                      active ? 'text-[#10b981]' : 'group-hover:text-[#34d399]'
+                    }`}
+                  />
+                  <span
+                    className={`font-medium transition-all duration-200 whitespace-nowrap ${
+                      !open ? 'hidden' : 'block'
+                    }`}
+                  >
+                    {link.label}
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
-         <div className='absolute bottom-0 left-0 text-white p-4' id="Footer">
-          <div className={`text-center flex flex-col justify-center items-center duration-150 ${!open && "hidden scale-0 duration-75"}`}>
-                    <h3 className='text-lg'>&copy; 2020-{new Date().getFullYear()} Pan_Okurka</h3>
-                        <p className='mt-4'> 
-                            <span className='mt-5 flex items-center justify-center'><FaCodeBranch/> prod-3.1.0</span>
-                        </p>
+
+        {/* Footer */}
+        <div className="border-t border-[#10b981]/20 pt-4">
+          <div
+            className={`text-center transition-all duration-200 ${
+              !open ? 'hidden' : 'block'
+            }`}
+          >
+            <h3 className="text-xs font-semibold text-gray-400">
+              &copy; {new Date().getFullYear()} Pan_Okurka
+            </h3>
+            <p className="text-xs text-gray-500 mt-2 flex items-center justify-center gap-1">
+              <Icon icon="oui:branch" width={14} height={14} />
+              v4.0.0
+            </p>
+          </div>
+          <div
+            className={`mt-3 text-center transition-all duration-200 ${
+              !open ? 'block' : 'hidden'
+            }`}
+          >
+            <div className="w-1.5 h-1.5 bg-[#10b981] rounded-full mx-auto"></div>
           </div>
         </div>
       </div>
-   </aside>
-    )
-}
+    </aside>
+  );
+};
