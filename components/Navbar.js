@@ -1,12 +1,8 @@
-/* eslint @next/next/no-img-element: 0 */
-
-import React, { useState, useCallback } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Icon } from '@iconify/react';
 
-export const Navbar = () => {
-  const [open, setOpen] = useState(false);
+export const Navbar = ({ open, onToggle }) => {
   const router = useRouter();
 
   const isActive = (path) => router.pathname === path;
@@ -20,17 +16,18 @@ export const Navbar = () => {
 
   return (
     <aside
-      className={`h-screen fixed bg-linear-to-b from-[#1a1a1e] to-[#27272a] border-r border-[#10b981]/20 duration-300 z-30 ${
-        open ? 'md:w-64 w-20' : 'w-20'
+      className={`fixed inset-x-0 bottom-0 z-30 h-[calc(4rem+env(safe-area-inset-bottom))] border-t border-[#10b981]/20 bg-[#1a1a1e] pb-[env(safe-area-inset-bottom)] md:inset-y-0 md:right-auto md:h-screen md:border-t-0 md:border-r md:bg-linear-to-b md:from-[#1a1a1e] md:to-[#27272a] md:pb-0 md:transition-[width] md:duration-300 motion-reduce:transition-none ${
+        open ? 'md:w-64' : 'md:w-20'
       }`}
       aria-label="Sidebar"
     >
-      <div className="overflow-y-auto h-screen py-4 px-3 flex flex-col">
+      <div className="flex h-full flex-row items-center justify-between px-2 md:flex-col md:items-stretch md:justify-start md:overflow-y-auto md:px-3 md:py-4">
         {/* Toggle Button */}
         <button
-          onClick={() => setOpen(!open)}
-          className="self-end mb-4 p-2 rounded-lg hover:bg-[#10b981]/20 transition-all duration-200 text-[#10b981]"
+          onClick={onToggle}
+          className="mb-4 hidden self-end rounded-lg p-2 text-[#10b981] transition-all duration-200 hover:bg-[#10b981]/20 md:flex"
           aria-label="Toggle sidebar"
+          aria-expanded={open}
         >
           <Icon
             icon={open ? 'mdi:chevron-left' : 'mdi:chevron-right'}
@@ -42,85 +39,73 @@ export const Navbar = () => {
         {/* Logo */}
         <Link
           href="/"
-          className={`flex items-center gap-3 mb-8 rounded-lg hover:bg-[#10b981]/10 transition-all duration-200 border border-transparent hover:border-[#10b981]/30 hover:no-underline ${
+          aria-label="Home - Tomáš K."
+          className={`mb-8 hidden items-center gap-3 rounded-lg border border-transparent transition-all duration-200 hover:border-[#10b981]/30 hover:bg-[#10b981]/10 hover:no-underline md:flex ${
             open ? 'p-2' : 'p-1 justify-center'
           }`}
         >
+          <img
+            className="h-10 w-10 shrink-0 rounded-full border-2 border-[#10b981]/50 object-cover"
+            alt=""
+            src="/images/panokurka.jpeg"
+          />
           {open ? (
-            <>
-              <img
-                className="h-10 w-10 rounded-full border-2 object-cover border-[#10b981]/50 shrink-0"
-                alt="logo"
-                src="/images/panokurka.jpeg"
-              />
-              <span className="text-lg font-bold text-white whitespace-nowrap">Tomáš K.</span>
-            </>
-          ) : (
-            <img
-              className="h-10 w-10 rounded-full border-2 object-cover border-[#10b981]/50"
-              alt="logo"
-              src="/images/panokurka.jpeg"
-            />
-          )}
+            <span className="whitespace-nowrap text-lg font-bold text-white">Tomáš K.</span>
+          ) : null}
         </Link>
 
         {/* Navigation Links */}
-        <ul className="space-y-2 flex-1">
-          {navLinks.map((link) => {
-            const active = isActive(link.href);
-            return (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className={`flex items-center gap-4 p-3 rounded-lg transition-all duration-200 group hover:no-underline ${
-                    active
-                      ? 'bg-[#10b981]/20 border border-[#10b981]/50 text-[#10b981]'
-                      : 'text-gray-400 hover:text-white hover:bg-[#10b981]/10 border border-transparent hover:border-[#10b981]/30'
-                  } ${!open && 'justify-center'}`}
-                >
-                  <Icon
-                    icon={link.icon}
-                    width={24}
-                    height={24}
-                    className={`shrink-0 transition-colors ${
-                      active ? 'text-[#10b981]' : 'group-hover:text-[#34d399]'
-                    }`}
-                  />
-                  <span
-                    className={`font-medium transition-all duration-200 whitespace-nowrap ${
-                      !open ? 'hidden' : 'block'
+        <nav className="h-full flex-1 md:h-auto" aria-label="Main navigation">
+          <ul className="grid h-full grid-cols-4 items-center gap-1 md:h-auto md:flex md:flex-col md:items-stretch md:space-y-2">
+            {navLinks.map((link) => {
+              const active = isActive(link.href);
+              return (
+                <li key={link.href} className="h-full min-w-0 py-1 md:h-auto md:py-0">
+                  <Link
+                    href={link.href}
+                    aria-label={link.label}
+                    aria-current={active ? 'page' : undefined}
+                    className={`group flex h-full w-full flex-col items-center justify-center gap-1 rounded-lg px-1 py-2 text-center transition-colors duration-200 hover:no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#10b981] md:h-auto md:flex-row md:gap-4 md:p-3 ${
+                      open ? 'md:justify-start' : 'md:justify-center'
+                    } ${
+                      active
+                        ? 'border border-[#10b981]/50 bg-[#10b981]/20 text-[#10b981]'
+                        : 'border border-transparent text-gray-400 hover:border-[#10b981]/30 hover:bg-[#10b981]/10 hover:text-white'
                     }`}
                   >
-                    {link.label}
-                  </span>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+                    <Icon
+                      icon={link.icon}
+                      width={24}
+                      height={24}
+                      className={`shrink-0 transition-colors md:h-6 md:w-6 ${
+                        active ? 'text-[#10b981]' : 'group-hover:text-[#34d399]'
+                      }`}
+                    />
+                    <span className={`whitespace-nowrap text-[11px] font-medium leading-none md:text-sm ${!open ? 'md:hidden' : ''}`}>
+                      {link.label}
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
 
         {/* Footer */}
-        <div className="border-t border-[#10b981]/20 pt-4">
-          <div
-            className={`text-center transition-all duration-200 ${
-              !open ? 'hidden' : 'block'
-            }`}
-          >
-            <h3 className="text-xs font-semibold text-gray-400">
-              &copy; {new Date().getFullYear()} Pan_Okurka
-            </h3>
-            <p className="text-xs text-gray-500 mt-2 flex items-center justify-center gap-1">
-              <Icon icon="oui:branch" width={14} height={14} />
-              v4.0.0
-            </p>
-          </div>
-          <div
-            className={`mt-3 text-center transition-all duration-200 ${
-              !open ? 'block' : 'hidden'
-            }`}
-          >
-            <div className="w-1.5 h-1.5 bg-[#10b981] rounded-full mx-auto"></div>
-          </div>
+        <div className={`mt-auto hidden border-t border-[#10b981]/20 pt-4 md:block ${!open ? 'text-center' : ''}`}>
+          {open ? (
+            <div className="text-center">
+              <h3 className="text-xs font-semibold text-gray-400">
+                &copy; {new Date().getFullYear()} Pan_Okurka
+              </h3>
+              <p className="mt-2 flex items-center justify-center gap-1 text-xs text-gray-500">
+                <Icon icon="oui:branch" width={14} height={14} />
+                v4.0.0
+              </p>
+            </div>
+          ) : (
+            <div className="mx-auto mt-3 h-1.5 w-1.5 rounded-full bg-[#10b981]" />
+          )}
         </div>
       </div>
     </aside>

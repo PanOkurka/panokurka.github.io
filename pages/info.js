@@ -1,6 +1,6 @@
 import Layout from '../components/layout'
 import { motion } from 'framer-motion'
-import { ProgressBar, Card } from '@heroui/react'
+import { Card } from '@heroui/react'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -26,35 +26,38 @@ const skills = [
   {
     category: 'Front-End',
     icon: '🎨',
-    proficiency: 100,
-    description: 'HTML, CSS, SCSS, TailwindCSS, JS, TS, ReactJS, NextJS, Webpack, HeroUI'
+    description: 'Building interfaces and web applications.',
+    technologies: ['HTML', 'CSS', 'SCSS', 'Tailwind CSS', 'JavaScript', 'TypeScript', 'React', 'Next.js', 'Webpack', 'HeroUI']
   },
   {
     category: 'Back-End',
     icon: '⚙️',
-    proficiency: 35,
-    description: 'PHP, NodeJS, GoLang and some Java'
+    description: 'Server-side development for applications and services.',
+    technologies: ['PHP', 'Node.js', 'Go', 'Java']
   },
   {
     category: 'Database',
     icon: '💾',
-    proficiency: 45,
-    description: 'MySQL, MongoDB, SQLite, Redis, Prisma'
+    description: 'Databases and data-access tools.',
+    technologies: ['MySQL', 'MongoDB', 'SQLite', 'Redis', 'Prisma']
   },
   {
     category: 'Dev Ops',
     icon: '🚀',
-    proficiency: 65,
-    description: 'NGINX, AWS, Docker, WHMCS, ProxMox, Hetzner, OCI, Qemu'
+    description: 'Infrastructure, hosting, and deployment tools.',
+    technologies: ['NGINX', 'AWS', 'Docker', 'WHMCS', 'Proxmox', 'Hetzner', 'OCI', 'QEMU']
   }
 ]
 
 export default function Info() {
   return (
-    <Layout>
+    <Layout
+      title="Skills & Technologies | Tomáš K."
+      description="Technologies I use across front-end, back-end, databases, and infrastructure."
+    >
       <motion.div 
         exit={{ opacity: 0, transition: { duration: 0.6, delay: 0.5 } }} 
-        initial={{ opacity: 0 }} 
+        initial={false}
         animate={{ opacity: 1, transition: { duration: 0.6 } }}
         className="w-full min-h-screen bg-linear-to-b from-[#27272a] via-[#27272a] to-[#1a1a1e] relative overflow-hidden"
       >
@@ -62,7 +65,7 @@ export default function Info() {
         <div className="relative z-10 px-4 md:px-8 lg:px-16 py-12 md:py-20">
           <motion.div
             variants={containerVariants}
-            initial="hidden"
+            initial={false}
             animate="visible"
             className="max-w-5xl mx-auto"
           >
@@ -72,53 +75,71 @@ export default function Info() {
                 My Skills
               </h1>
               <div className="h-1 w-32 bg-linear-to-r from-[#10b981] to-[#059669] mb-6" />
-              <p className="text-xl text-gray-300">Here's an overview of my technical expertise and proficiency levels across different domains.</p>
+              <p className="text-xl text-gray-300">Tools I use across web development, applications, databases, and infrastructure.</p>
             </motion.div>
 
             {/* Skills Grid */}
             <motion.div
               variants={containerVariants}
-              initial="hidden"
+              initial={false}
               animate="visible"
               className="grid grid-cols-1 md:grid-cols-2 gap-8"
             >
-              {skills.map((skill, idx) => (
-                <motion.div key={idx} variants={itemVariants}>
+              {skills.map((skill) => (
+                <motion.div key={skill.category} variants={itemVariants}>
                   <Card className="h-full bg-[#18181B]/80 backdrop-blur border border-[#10b981]/20 hover:border-[#10b981]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#10b981]/10">
                     <Card.Content className="p-8">
                       <div className="flex items-start gap-4 mb-4">
                         <div className="text-4xl">{skill.icon}</div>
                         <div className="flex-1">
                           <h3 className="text-2xl font-bold text-white">{skill.category}</h3>
-                          <div className="inline-block mt-2 px-3 py-1 bg-[#10b981]/20 rounded-full border border-[#10b981]/30">
-                            <span className="text-[#10b981] font-semibold text-sm">{skill.proficiency}% Proficiency</span>
-                          </div>
                         </div>
                       </div>
 
-                      <p className="text-gray-300 text-sm mb-5 leading-relaxed">{skill.description}</p>
-
-                      {/* Custom Progress Bar */}
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-xs text-gray-400">Proficiency Level</span>
-                          <span className="text-xs font-semibold text-[#10b981]">{skill.proficiency}%</span>
-                        </div>
-                        <div className="w-full h-2 bg-[#10b981]/20 rounded-full overflow-hidden border border-[#10b981]/30">
-                          <motion.div
-                            className="h-full bg-linear-to-r from-[#10b981] to-[#34d399]"
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${skill.proficiency}%` }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1.5, ease: 'easeOut', delay: idx * 0.1 }}
-                          />
-                        </div>
-                      </div>
+                      <p className="mb-5 text-sm leading-relaxed text-gray-300">{skill.description}</p>
+                      <ul className="flex flex-wrap gap-2">
+                        {skill.technologies.map((technology) => (
+                          <li
+                            key={technology}
+                            className="rounded-full border border-[#10b981]/30 bg-[#10b981]/10 px-3 py-1 text-sm font-medium text-[#d1fae5]"
+                          >
+                            {technology}
+                          </li>
+                        ))}
+                      </ul>
                     </Card.Content>
                   </Card>
                 </motion.div>
               ))}
             </motion.div>
+
+            <motion.section variants={itemVariants} className="mt-16">
+              <h2 className="mb-6 text-3xl font-black text-white">See my work</h2>
+              <div className="flex flex-wrap gap-3">
+                <a
+                  href="https://atropol.eu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-[#10b981]/30 px-4 py-2 text-sm font-semibold text-[#34d399] hover:border-[#10b981] hover:no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#34d399]"
+                >
+                  Atropol website ↗
+                </a>
+                <a
+                  href="https://panel.atropol.eu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-[#10b981]/30 px-4 py-2 text-sm font-semibold text-[#34d399] hover:border-[#10b981] hover:no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#34d399]"
+                >
+                  Atropol dashboard ↗
+                </a>
+                <a
+                  href="/projects"
+                  className="rounded-full border border-[#10b981]/30 px-4 py-2 text-sm font-semibold text-[#34d399] hover:border-[#10b981] hover:no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#34d399]"
+                >
+                  Full project timeline
+                </a>
+              </div>
+            </motion.section>
           </motion.div>
         </div>
 

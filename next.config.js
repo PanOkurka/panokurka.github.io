@@ -11,6 +11,9 @@ module.exports = {
 
   // Development origins
   allowedDevOrigins: ['testing.baby-cucumber.com'],
+  devIndicators: {
+    position: 'top-right',
+  },
 
   // Cache configuration
   onDemandEntries: {
@@ -20,6 +23,21 @@ module.exports = {
 
   // Headers for better cache control
   async headers() {
+    // Development chunks can change without their URLs changing.
+    if (process.env.NODE_ENV === 'development') {
+      return [
+        {
+          source: '/:path*',
+          headers: [
+            {
+              key: 'Cache-Control',
+              value: 'private, no-store, max-age=0, must-revalidate',
+            },
+          ],
+        },
+      ];
+    }
+
     return [
       {
         source: '/:path*',

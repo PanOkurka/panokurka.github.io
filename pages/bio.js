@@ -1,6 +1,6 @@
 import Layout from '../components/layout'
 import { motion } from 'framer-motion'
-import { Card, Button } from "@heroui/react"
+import { Card } from '@heroui/react'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -26,26 +26,39 @@ const bioSections = [
   {
     icon: '👋',
     title: 'About Me',
-    content: 'I\'m Thomas K. from the Czech Republic, known as Pan_Okurka. I\'m a student, athlete, and passionate developer with a love for creating beautiful digital experiences. For more about my life, check out my Instagram!'
+    content: 'I\'m Tomáš K. from Czechia, known online as Pan_Okurka. I\'m a student, athlete, and developer who enjoys building useful web projects.',
+    links: [
+      { label: 'Instagram', href: 'https://www.instagram.com/panokurka_official/', external: true }
+    ]
   },
   {
     icon: '💻',
     title: 'My Journey',
-    content: 'I\'ve been coding for 6 years, constantly learning and growing. Currently, I\'m working on several exciting projects that I\'ll be sharing soon. My expertise focuses on front-end development, though I\'m comfortable with back-end technologies too.'
+    content: 'I build websites, dashboards, and infrastructure. My current work includes Atropol Hosting and InPacket Network, alongside earlier community and game-server projects.',
+    links: [
+      { label: 'Explore my projects', href: '/projects' }
+    ]
   },
   {
     icon: '🚀',
     title: 'Let\'s Connect',
-    content: 'Check out my projects in the Projects tab. You can reach me via Discord (Pan_Okurka) or email (okurka@baby-cucumber.com). I\'m always open to collaborations and new opportunities!'
+    content: 'Have a project in mind or want to get in touch? Reach me by email or Discord.',
+    links: [
+      { label: 'Email me', href: 'mailto:okurka@baby-cucumber.com' },
+      { label: 'Discord', href: 'https://discord.gg/wn5aF2w', external: true }
+    ]
   }
 ]
 
 export default function Bio() {
   return (
-    <Layout>
+    <Layout
+      title="About Tomáš K. | Pan_Okurka"
+      description="Meet Tomáš K. (Pan_Okurka), a developer from Czechia building web projects and infrastructure."
+    >
       <motion.div 
         exit={{ opacity: 0, transition: { duration: 0.6 } }} 
-        initial={{ opacity: 0 }} 
+        initial={false}
         animate={{ opacity: 1, transition: { duration: 0.6 } }}
         className="w-full min-h-screen bg-linear-to-b from-[#27272a] via-[#27272a] to-[#1a1a1e] relative overflow-hidden"
       >
@@ -53,7 +66,7 @@ export default function Bio() {
         <div className="relative z-10 px-4 md:px-8 lg:px-16 py-12 md:py-20">
           <motion.div
             variants={containerVariants}
-            initial="hidden"
+            initial={false}
             animate="visible"
             className="max-w-4xl mx-auto"
           >
@@ -69,7 +82,7 @@ export default function Bio() {
             {/* Bio Sections Grid */}
             <motion.div
               variants={containerVariants}
-              initial="hidden"
+              initial={false}
               animate="visible"
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
             >
@@ -80,14 +93,23 @@ export default function Bio() {
                       <div className="text-4xl mb-4">{section.icon}</div>
                       <h3 className="text-2xl font-bold text-white mb-3">{section.title}</h3>
                       <p className="text-gray-300 leading-relaxed text-sm md:text-base">
-                        {section.content.split(/(\w+(?:\s+\w+)?)/).map((part, i) => {
-                          const highlights = ['Pan_Okurka', 'Thomas K.', '6 years', 'front-end', 'back-end', 'Instagram', 'Projects', 'Discord', 'okurka@baby-cucumber.com']
-                          if (highlights.includes(part)) {
-                            return <span key={i} className="text-[#10b981] font-semibold">{part}</span>
-                          }
-                          return part
-                        })}
+                        {section.content}
                       </p>
+                      {section.links && (
+                        <div className="mt-5 flex flex-wrap gap-3">
+                          {section.links.map((link) => (
+                            <a
+                              key={link.href}
+                              href={link.href}
+                              target={link.external ? '_blank' : undefined}
+                              rel={link.external ? 'noopener noreferrer' : undefined}
+                              className="text-sm font-semibold text-[#34d399] hover:text-[#6ee7b7] hover:no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#34d399]"
+                            >
+                              {link.label}{link.external ? ' ↗' : ''}
+                            </a>
+                          ))}
+                        </div>
+                      )}
                     </Card.Content>
                   </Card>
                 </motion.div>
@@ -99,7 +121,7 @@ export default function Bio() {
               <h2 className="text-3xl md:text-4xl font-black text-white mb-8">Highlights</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {[
-                  { label: 'Years Coding', value: '6+' },
+                  { label: 'Coding Since', value: '2017' },
                   { label: 'Projects', value: 'Multiple' },
                   { label: 'Specialization', value: 'Front-End' }
                 ].map((highlight, idx) => (

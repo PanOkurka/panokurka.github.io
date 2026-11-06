@@ -25,109 +25,28 @@ const itemVariants = {
 
 const projects = [
   {
-    id: 1,
-    title: 'Website Developer',
-    type: 'Career',
-    date: '2017 - present',
-    icon: <Icon icon="devicon:html5" />,
-    description: 'At this time only HTML, CSS and basic JS. After some time moved to ReactJS. And now NextJS, TailwindCSS and more.',
-    location: 'Czechia'
-  },
-  {
-    id: 2,
-    title: 'Baby-Cucumber v1.0',
-    type: 'Discord Bot',
-    date: '2019 - 2020',
-    icon: <Icon icon="devicon:javascript" />,
-    description: 'Basic Discord Bot with features for moderation, fun and more.',
-  },
-  {
-    id: 3,
-    title: 'AdvancedCraft',
-    type: 'Minecraft Server',
-    date: '2019 - 2019',
+    id: 18,
+    title: 'OkurkaCraft V2',
+    type: 'Minecraft whitelist server',
+    date: '2026 - present',
     icon: <Icon icon="vscode-icons:file-type-minecraft" />,
-    description: 'Technik of this server'
+    description: 'Founder and Developer'
   },
   {
-    id: 4,
-    title: 'DarkMines (VIPCraft)',
-    type: 'Minecraft Server',
-    date: '2019 - 2020',
-    icon: <Icon icon="vscode-icons:file-type-minecraft" />,
-    description: 'Builder, Admin, Technik'
+    id: 19,
+    title: 'InPacket Network',
+    type: 'Rack & Housing provider',
+    date: '2026 - present',
+    icon: <Icon icon="streamline-freehand-color:network" />,
+    description: 'CTO & Dev'
   },
   {
-    id: 5,
-    title: 'Baby-Cucumber v2.0',
-    type: 'Discord Bot',
-    date: '2020 - present',
-    icon: <Icon icon="devicon:javascript" />,
-    description: 'Advanced Discord Bot with lot of features.'
-  },
-  {
-    id: 6,
-    title: 'OkurkaCraft S1',
-    type: 'Minecraft server',
-    date: 'late 2019 - early 2021',
-    icon: <Icon icon="vscode-icons:file-type-minecraft" />,
-    description: 'My own minecraft server with whitelist'
-  },
-  {
-    id: 7,
-    title: 'Atropol',
-    type: 'MC, Hosting, Other',
-    date: '2019 - 2021',
+    id: 17,
+    title: 'Atropol Hosting',
+    type: 'Game, VPS, Dedicated Server and more',
+    date: '2023 - present',
     icon: <Icon icon="streamline-stickies-color:server-network" />,
-    description: 'Technik and Developer'
-  },
-  {
-    id: 8,
-    title: 'Okurka Images',
-    type: 'Docker',
-    date: '2021 - 2022',
-    icon: <Icon icon="devicon:docker" />,
-    description: 'Some docker images for minecraft'
-  },
-  {
-    id: 9,
-    title: 'Plugin Translation',
-    type: 'Minecraft - TechsCode',
-    date: '2021 - present',
-    icon: <Icon icon="streamline-sharp-color:translate-text-flat" />,
-    description: 'Translations of TechsCode minecraft plugins'
-  },
-  {
-    id: 10,
-    title: 'Cucumber/Dragonex Radio',
-    type: 'Discord Bot',
-    date: '2021 - 2025',
-    icon: <Icon icon="devicon:javascript" />,
-    description: 'Simple 24/7 radio of lofi music'
-  },
-  {
-    id: 11,
-    title: 'Dragonex Network',
-    type: 'Minecraft Server',
-    date: '2021 - 2022',
-    icon: <Icon icon="vscode-icons:file-type-minecraft" />,
-    description: 'Website Developer, Technik'
-  },
-  {
-    id: 12,
-    title: 'Ethernal',
-    type: 'Minecraft Server',
-    date: '2022 - 2022',
-    icon: <Icon icon="devicon:nextjs" />,
-    description: 'Website Developer'
-  },
-  {
-    id: 13,
-    title: 'Mejs.cz',
-    type: 'Minecraft Server',
-    date: '2022 - 2022',
-    icon: <Icon icon="devicon:javascript" />,
-    description: 'Discord bot Developer'
+    description: 'CTO & Dev'
   },
   {
     id: 14,
@@ -154,37 +73,121 @@ const projects = [
     description: 'Founder and Developer'
   },
   {
-    id: 17,
-    title: 'Atropol Hosting',
-    type: 'Game, VPS, Dedicated Server and more',
-    date: '2023 - present',
-    icon: <Icon icon="streamline-stickies-color:server-network" />,
-    description: 'CTO & Dev'
+    id: 12,
+    title: 'Ethernal',
+    type: 'Minecraft Server',
+    date: '2022 - 2022',
+    icon: <Icon icon="devicon:nextjs" />,
+    description: 'Website Developer'
   },
   {
-    id: 18,
-    title: 'OkurkaCraft V2',
-    type: 'Minecraft whitelist server',
-    date: '2026 - present',
+    id: 13,
+    title: 'Mejs.cz',
+    type: 'Minecraft Server',
+    date: '2022 - 2022',
+    icon: <Icon icon="devicon:javascript" />,
+    description: 'Discord bot Developer'
+  },
+  {
+    id: 9,
+    title: 'Plugin Translation',
+    type: 'Minecraft - TechsCode',
+    date: '2021 - present',
+    icon: <Icon icon="streamline-sharp-color:translate-text-flat" />,
+    description: 'Translations of TechsCode minecraft plugins'
+  },
+  {
+    id: 10,
+    title: 'Cucumber/Dragonex Radio',
+    type: 'Discord Bot',
+    date: '2021 - 2025',
+    icon: <Icon icon="devicon:javascript" />,
+    description: 'Simple 24/7 radio of lofi music'
+  },
+  {
+    id: 11,
+    title: 'Dragonex Network',
+    type: 'Minecraft Server',
+    date: '2021 - 2022',
     icon: <Icon icon="vscode-icons:file-type-minecraft" />,
-    description: 'Founder and Developer'
+    description: 'Website Developer, Technik'
   },
   {
-    id: 19,
-    title: 'InPacket Network',
-    type: 'Rack & Housing provider',
-    date: '2026 - present',
-    icon: <Icon icon="streamline-freehand-color:network" />,
-    description: 'CTO & Dev'
+    id: 8,
+    title: 'Okurka Images',
+    type: 'Docker',
+    date: '2021 - 2022',
+    icon: <Icon icon="devicon:docker" />,
+    description: 'Some docker images for minecraft'
+  },
+  {
+    id: 5,
+    title: 'Baby-Cucumber v2.0',
+    type: 'Discord Bot',
+    date: '2020 - present',
+    icon: <Icon icon="devicon:javascript" />,
+    description: 'Advanced Discord Bot with lot of features.'
+  },
+  {
+    id: 6,
+    title: 'OkurkaCraft S1',
+    type: 'Minecraft server',
+    date: 'late 2019 - early 2021',
+    icon: <Icon icon="vscode-icons:file-type-minecraft" />,
+    description: 'My own minecraft server with whitelist'
+  },
+  {
+    id: 7,
+    title: 'Atropol',
+    type: 'MC, Hosting, Other',
+    date: '2019 - 2021',
+    icon: <Icon icon="streamline-stickies-color:server-network" />,
+    description: 'Technik and Developer'
+  },
+  {
+    id: 2,
+    title: 'Baby-Cucumber v1.0',
+    type: 'Discord Bot',
+    date: '2019 - 2020',
+    icon: <Icon icon="devicon:javascript" />,
+    description: 'Basic Discord Bot with features for moderation, fun and more.',
+  },
+  {
+    id: 4,
+    title: 'DarkMines (VIPCraft)',
+    type: 'Minecraft Server',
+    date: '2019 - 2020',
+    icon: <Icon icon="vscode-icons:file-type-minecraft" />,
+    description: 'Builder, Admin, Technik'
+  },
+  {
+    id: 3,
+    title: 'AdvancedCraft',
+    type: 'Minecraft Server',
+    date: '2019 - 2019',
+    icon: <Icon icon="vscode-icons:file-type-minecraft" />,
+    description: 'Technik of this server'
+  },
+  {
+    id: 1,
+    title: 'Website Developer',
+    type: 'Career',
+    date: '2017 - present',
+    icon: <Icon icon="devicon:html5" />,
+    description: 'At this time only HTML, CSS and basic JS. After some time moved to ReactJS. And now NextJS, TailwindCSS and more.',
+    location: 'Czechia'
   },
 ]
 
 export default function Projects() {
   return (
-    <Layout>
+    <Layout
+      title="Projects & Experience | Tomáš K."
+      description="Explore Tomáš K.'s project history, from recent hosting and network work to earlier web and community projects."
+    >
       <motion.div 
         exit={{ opacity: 0, transition: { duration: 0.6 } }} 
-        initial={{ opacity: 0 }} 
+        initial={false}
         animate={{ opacity: 1, transition: { duration: 0.6 } }}
         className="w-full min-h-screen bg-linear-to-b from-[#27272a] via-[#27272a] to-[#1a1a1e] relative overflow-hidden"
       >
@@ -192,7 +195,7 @@ export default function Projects() {
         <div className="relative z-10 px-4 md:px-8 lg:px-16 py-12 md:py-20">
           <motion.div
             variants={containerVariants}
-            initial="hidden"
+            initial={false}
             animate="visible"
             className="max-w-5xl mx-auto"
           >
@@ -202,13 +205,13 @@ export default function Projects() {
                 My Projects
               </h1>
               <div className="h-1 w-32 bg-linear-to-r from-[#10b981] to-[#059669] mb-6" />
-              <p className="text-xl text-gray-300">A timeline of my journey through various projects and experiences.</p>
+              <p className="text-xl text-gray-300">Recent work and projects first, followed by earlier milestones.</p>
             </motion.div>
 
             {/* Timeline */}
             <motion.div
               variants={containerVariants}
-              initial="hidden"
+              initial={false}
               animate="visible"
               className="relative"
             >

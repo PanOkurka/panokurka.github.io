@@ -2,11 +2,9 @@
 
 import Layout from '../components/layout'
 import { Icon } from '@iconify/react'
-import { Card, Button } from '@heroui/react'
 import Typing from '../components/typing'
 import { motion } from 'framer-motion'
 import ParticlesComponent from '../components/paticlecomponent'
-import { useState } from 'react'
 
 const projects = [
   {
@@ -14,27 +12,27 @@ const projects = [
     description: 'Web application',
     image: '/images/projects/Atropol.png',
     link: 'https://atropol.eu',
-    tag: 'HomePage'
+    tag: 'Website'
   },
   {
     title: 'Atropol Dashboard',
     description: 'Admin dashboard',
     image: '/images/projects/Atropol-Dash.png',
     link: 'https://panel.atropol.eu',
-    tag: 'Administration'
+    tag: 'Dashboard'
   },
   {
     title: 'Dragonex',
     description: 'Game project',
     image: '/images/projects/Dragonex.jpg',
-    link: '#',
+    link: null,
     tag: 'Web of minecraft server'
   },
   {
     title: 'OkurkaCraft Site',
     description: 'Community site',
     image: '/images/projects/OkurkaCraftSite.png',
-    link: '#',
+    link: null,
     tag: 'Web for my server'
   }
 ]
@@ -74,13 +72,14 @@ const floatingVariants = {
 }
 
 export default function NewHome() {
-  const [hoveredProject, setHoveredProject] = useState(null)
-
   return (
-    <Layout>
+    <Layout
+      title="Tomáš K. | Pan_Okurka"
+      description="I build web apps, dashboards, and infrastructure. Currently working with Atropol Hosting and InPacket Network."
+    >
       <motion.div 
         exit={{ opacity: 0, transition: { duration: 0.6 } }}
-        initial={{ opacity: 0 }}
+        initial={false}
         animate={{ opacity: 1, transition: { duration: 0.6 } }}
         className="w-full min-h-screen bg-linear-to-b from-[#27272a] via-[#27272a] to-[#1a1a1e] relative overflow-hidden"
       >
@@ -90,7 +89,7 @@ export default function NewHome() {
         <div className="relative z-10 px-4 md:px-8 lg:px-16 py-12 md:py-20">
           <motion.div
             variants={containerVariants}
-            initial="hidden"
+            initial={false}
             animate="visible"
             className="max-w-7xl mx-auto"
           >
@@ -129,31 +128,25 @@ export default function NewHome() {
                     </p>
                   </div>
                   <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-8 max-w-lg">
-                    Full-stack developer crafting beautiful web experiences and scalable applications. Passionate about clean code, innovative design, and solving complex problems.
+                    I build web apps, dashboards, and infrastructure. I’m currently working with Atropol Hosting and InPacket Network.
                   </p>
 
                   {/* CTA Buttons */}
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <Button
-                      as="a"
+                    <a
                       href="#projects"
-                      variant="primary"
-                      size="lg"
-                      className="bg-linear-to-r from-[#10b981] to-[#059669] font-semibold shadow-lg shadow-[#10b981]/30 hover:shadow-xl hover:shadow-[#10b981]/50"
+                      className="inline-flex items-center justify-center rounded-full bg-linear-to-r from-[#10b981] to-[#059669] px-6 py-3 font-semibold text-white shadow-lg shadow-[#10b981]/30 transition-shadow hover:no-underline hover:shadow-xl hover:shadow-[#10b981]/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#34d399]"
                     >
                       View My Work
-                    </Button>
-                    <Button
-                      as="a"
+                    </a>
+                    <a
                       href="https://www.buymeacoffee.com/panokurka"
                       target="_blank"
-                      rel="noreferrer"
-                      variant="bordered"
-                      size="lg"
-                      className="border-2 border-[#10b981]/50 hover:border-[#10b981] hover:bg-[#10b981]/10 font-semibold"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center rounded-full border-2 border-[#10b981]/50 px-6 py-3 font-semibold text-white transition-colors hover:border-[#10b981] hover:bg-[#10b981]/10 hover:no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#34d399]"
                     >
                       Buy Me Coffee
-                    </Button>
+                    </a>
                   </div>
                 </motion.div>
               </div>
@@ -182,7 +175,7 @@ export default function NewHome() {
             </motion.div>
 
             {/* Projects Section */}
-            <motion.div variants={itemVariants} id="projects" className="mt-32">
+            <motion.div variants={itemVariants} id="projects" className="mt-32 scroll-mt-12">
               <div className="mb-12">
                 <h2 className="text-4xl md:text-5xl font-black mb-2 text-white">Featured Projects</h2>
                 <div className="h-1 w-32 bg-linear-to-r from-[#10b981] to-[#059669]" />
@@ -190,49 +183,58 @@ export default function NewHome() {
 
               <motion.div
                 variants={containerVariants}
-                initial="hidden"
+                initial={false}
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.2 }}
                 className="grid grid-cols-1 md:grid-cols-2 gap-8"
               >
-                {projects.map((project, idx) => (
-                  <motion.div
-                    key={idx}
-                    variants={itemVariants}
-                    className="group h-80"
-                    onMouseEnter={() => setHoveredProject(idx)}
-                    onMouseLeave={() => setHoveredProject(null)}
-                  >
-                    <a
-                      href={project.link}
-                      target={project.link.startsWith('http') ? '_blank' : undefined}
-                      rel={project.link.startsWith('http') ? 'noreferrer' : undefined}
-                      className="h-full block"
+                {projects.map((project) => {
+                  const ProjectCard = project.link ? 'a' : 'article'
+                  const externalLink = project.link?.startsWith('http')
+
+                  return (
+                    <motion.div
+                      key={project.title}
+                      variants={itemVariants}
+                      className="h-full"
                     >
-                      <div className="h-full bg-[#18181B]/80 backdrop-blur border border-[#10b981]/20 hover:border-[#10b981]/50 transition-all duration-300 overflow-hidden rounded-lg cursor-pointer">
-                        {/* Image */}
-                        <div className="relative h-full overflow-hidden">
+                      <ProjectCard
+                        {...(project.link ? {
+                          href: project.link,
+                          target: externalLink ? '_blank' : undefined,
+                          rel: externalLink ? 'noopener noreferrer' : undefined,
+                        } : {})}
+                        className={`group block h-full overflow-hidden rounded-lg border border-[#10b981]/20 bg-[#18181B]/80 text-gray-300 backdrop-blur transition-colors ${
+                          project.link ? 'hover:border-[#10b981]/50 hover:no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#10b981]' : ''
+                        }`}
+                      >
+                        <div className="h-48 overflow-hidden">
                           <img
                             src={project.image}
                             alt={project.title}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            className={`h-full w-full object-cover transition-transform duration-500 ${project.link ? 'group-hover:scale-105' : ''}`}
                           />
-
-                          {/* Overlay */}
-                          <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                            <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
-                            <p className="text-gray-300 mb-4">{project.description}</p>
-                            <div className="flex gap-2 flex-wrap">
-                              <span className="px-3 py-1 bg-[#10b981]/30 text-[#10b981] rounded-full text-sm font-medium">
-                                {project.tag}
+                        </div>
+                        <div className="p-5">
+                          <h3 className="mb-2 text-xl font-bold text-white">{project.title}</h3>
+                          <p className="mb-4 text-sm leading-relaxed text-gray-300">{project.description}</p>
+                          <div className="flex flex-wrap items-center justify-between gap-3">
+                            <span className="rounded-full border border-[#10b981]/30 bg-[#10b981]/10 px-3 py-1 text-xs font-medium text-[#34d399]">
+                              {project.tag}
+                            </span>
+                            {project.link ? (
+                              <span className="text-sm font-medium text-[#34d399]">
+                                Visit project <span aria-hidden="true">↗</span>
                               </span>
-                            </div>
+                            ) : (
+                              <span className="text-xs text-gray-400">No live link</span>
+                            )}
                           </div>
                         </div>
-                      </div>
-                    </a>
-                  </motion.div>
-                ))}
+                      </ProjectCard>
+                    </motion.div>
+                  )
+                })}
               </motion.div>
             </motion.div>
           </motion.div>
